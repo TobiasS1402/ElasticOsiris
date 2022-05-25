@@ -2,6 +2,7 @@
 #Made by Tobias
 import json
 
+'''
 f = open('input.json')
 data = json.load(f)
 
@@ -20,14 +21,41 @@ for key,value in zip(courses, studies):
 with open('result.json', 'w+') as write:
     json.dump(dict, write)
 
-id = 0
-templist = []
-tempdict = {}
+write.close()
+f.close()
+'''
 
-for key,value in dict.items():
+insertsql = []
+testdict = {}
+count = 0
+
+ddl = open('stutor.sql', 'w+')
+
+f = open('result.json')
+test = json.load(f)
+
+templist = []
+for key,value in test.items():
     templist.append(value)
 templist = list(dict.fromkeys(templist))
 
-templist.clear
+for x in templist:
+    count = count + 1
+    testdict.update({count:x})
+    ddl.write('INSERT INTO "Studies" ("_id", "name") VALUES')
+    ddl.write("("+str(count) + ","+ f"'{x}'" +");\n")
 
-print(templist)
+templist.clear()
+count = 0
+
+for key,value in test.items():
+    test1 = value
+    test2 = key
+    for key,value in testdict.items():
+        if test1 == value:
+            count = count + 1
+            ddl.write('INSERT INTO "Courses" ("_id", "name", "studyId") VALUES ')
+            ddl.write("("+str(count) + ","+ f"'{test2}'" + "," + str(key) + ");\n")
+
+f.close()
+ddl.close()
