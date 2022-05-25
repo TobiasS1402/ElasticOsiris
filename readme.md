@@ -1,6 +1,6 @@
 # ElasticOsiris
 ### A retarded solution in a  repository because the HU does not have a API to query courses and studies
-
+![afbeelding](https://user-images.githubusercontent.com/46230851/170359064-25b9f78b-d8a2-4c9f-9692-319b48b57993.png)
 The `input.json` has been created by allowing my browser to query the maximum amount of documents available from the Elasticsearch back-end storing all the courses and studies.
 
 `result.json` is the filtered version of the `input.json` in a dictionary format with each course as value and each studie as key.
